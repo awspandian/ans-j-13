@@ -1,0 +1,30 @@
+---
+-
+  hosts: dev
+  user: ansible
+  become: true
+
+  vars:
+    motd_redhat: "Welcome to RedHat \n"
+    motd_ubuntu: "Welcome to Ubuntu \n"
+ 
+  tasks:
+    - name: Configure a MOTD (message of the day)
+      ansible.builtin.copy:
+        content: "{{ motd_redhat }}"
+        dest: /etc/motd
+      notify: MOTD changed
+      when: ansible_distribution == "RedHat"
+
+    - name: Configure a MOTD (message of the day)
+      ansible.builtin.copy:
+        content: "{{ motd_ubuntu }}"
+        dest: /etc/motd
+      notify: MOTD changed
+      when: ansible_distribution == "Ubuntu"
+ 
+  # Handlers: handlers that are executed as a notify key from a task
+  handlers:
+    - name: MOTD changed
+      debug:
+        msg: The MOTD was changed

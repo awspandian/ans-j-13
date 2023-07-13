@@ -1,0 +1,20 @@
+---
+-
+  hosts: dev
+  user: ansible
+  become: true
+  tasks:
+    - name: delete user
+      user:
+        name: "{{ item.key }}"
+        comment: "{{ item.value.full_name }}"
+        state: absent
+      with_dict: 
+        kan: 
+          full_name: Rajavanan
+        ravi: 
+          full_name: Prasanna ravi
+        khan: 
+          full_name: sayeed Khan
+        settu:
+          full_name: priya settu 

@@ -1,0 +1,11 @@
+---
+-
+  hosts: dev
+  user: ansible
+  become: yes
+  gather_facts: false
+  tasks:
+    - name: Configure a MOTD (message of the day)
+      ansible.builtin.copy:
+        src: motd
+        dest: /tmp/j11

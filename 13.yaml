@@ -1,0 +1,15 @@
+---
+-
+  hosts: ubu
+  user: ansible
+  become: true
+  tasks:
+    - name: Create random directory
+      file:
+        dest: "/home/raja/{{ item }}"
+        state: directory
+      with_random_choice:
+        - "aws"
+        - "azure"
+        - "gcp"
+        - "ibm"

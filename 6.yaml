@@ -1,0 +1,17 @@
+---
+-
+  hosts: dev
+  user: ansible
+  become: true
+  tasks:
+    - name: Configure a MOTD (message of the day)
+      copy:
+        content: "Welcome to {{ item }} Linux -  playbook\n"
+        dest: /etc/motd
+      notify: MOTD changed
+      with_items: [ 'CentOS', 'Ubuntu' ]
+      when: ansible_distribution == item
+  handlers:
+    - name: MOTD changed
+      debug:
+        msg: The MOTD was changed

@@ -1,0 +1,9 @@
+- hosts: dev
+  gather_facts: yes
+  user: ansible
+  become: true
+  tasks:
+  - name: System details
+    debug: msg="{{ item }}"
+    with_items: 
+    - "{{ ansible_distribution }}"

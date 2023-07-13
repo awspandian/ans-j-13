@@ -1,0 +1,15 @@
+---
+-
+  hosts: dev
+  user: ansible
+  become: true
+  tasks:
+    - name: Deleting user
+      user:
+        name: "{{ item }}"
+        state: absent
+      with_items: 
+        - kan
+        - ravi
+        - khan
+        - settu

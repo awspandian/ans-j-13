@@ -1,0 +1,13 @@
+---
+-
+  hosts: dev
+  user: ansible
+  become: true
+  tasks:
+    - name: Run a script until we hit 10
+      script: random.sh
+      register: result
+      retries: 100
+      until: result.stdout.find("10") != -1
+      # n.b. the default delay is 5 seconds
+      delay: 1

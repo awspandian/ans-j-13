@@ -1,0 +1,14 @@
+---
+-
+  hosts: dev
+  user: ansible
+  become: true
+  tasks:
+    - name: Creating user
+      user:
+        name: "{{ item }}"
+      with_items: 
+        - kan
+        - ravi
+        - khan
+        - settu 

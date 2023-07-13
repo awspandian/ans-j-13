@@ -1,0 +1,23 @@
+---
+-
+  hosts: dev
+  user: ansible
+  become: true  
+    #  gather_facts: true
+
+  # Variable: variables that will apply to the play, on all target systems
+  vars:
+    sample: "this line copy using playbook with var's condation with haldlers gatherfacts"
+
+  # Task: the list of tasks that will be executed within the playbook
+  tasks:
+    - name: Configure a MOTD (message of the day)
+      ansible.builtin.copy:
+        content: "{{ sample }}"
+        dest: /tmp/j11
+      notify: MOTD changed    
+
+  handlers:
+    - name: MOTD changed
+      debug:
+        msg: The MOTD was copied with new changes
