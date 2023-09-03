@@ -1,0 +1,44 @@
+---
+- name: tags demo
+  hosts: all
+  tasks:
+    - name: task1
+      ansible.builtin.debug:
+        msg: task1
+      tags:
+        - pre
+        - info
+        - test
+    - name: task2
+      ansible.builtin.debug:
+        msg: task2
+      tags:
+        - pre
+        - verbose
+        - demo
+        - dev 
+    - name: task3
+      ansible.builtin.debug:
+        msg: task3
+      tags:
+        - main
+        - info
+        - dev
+    - name: task4
+      ansible.builtin.debug:
+        msg: task4
+      tags:
+        - post
+        - verbose
+        - pro
+    - name: task5
+      ansible.builtin.debug:
+        msg: task5
+      tags:
+        - post
+        - info
+        - pro
+
+
+
+          #https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_tags.html#selecting-or-skipping-tags-when-you-run-a-playbook      
